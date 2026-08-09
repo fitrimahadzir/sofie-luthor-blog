@@ -1,0 +1,38 @@
+@font-face {
+  font-family: 'mfn-icons';
+  src: url('/fonts/mfn-icons.woff') format('woff'),
+    url('/fonts/mfn-icons.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+[class^='icon-']:before,
+[class*=' icon-']:before {
+  font-family: 'mfn-icons';
+  font-style: normal;
+  font-weight: normal;
+  speak: never;
+  display: inline-block;
+  text-decoration: inherit;
+  width: 1em;
+  text-align: center;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1em;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-menu-fine:before { content: '\e960'; }
+.icon-right-open:before { content: '\e915'; }
+.icon-location:before { content: '\e8c6'; }
+.icon-clock:before { content: '\e843'; }
+.icon-phone:before { content: '\e8f4'; }
+.icon-play:before { content: '\e8f9'; }
+.icon-search:before { content: '\e91b'; }
+.icon-twitter-circled:before { content: '\f30a'; }
+.icon-facebook-circled:before { content: '\f30d'; }
+.icon-instagram:before { content: '\f16d'; }
+.icon-skype-circled:before { content: '\f33a'; }
+.icon-mail:before { content: '\e8d0'; }
