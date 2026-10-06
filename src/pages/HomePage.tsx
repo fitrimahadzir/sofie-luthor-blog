@@ -25,6 +25,9 @@ export default function HomePage() {
               <Link to="/about" className="button button--accent">
                 Tentang saya
               </Link>
+              <Link to="/peta-blog" className="button button--ghost">
+                Peta blog
+              </Link>
             </div>
           </div>
         </div>

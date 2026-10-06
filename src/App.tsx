@@ -5,6 +5,7 @@ import BlogPage from './pages/BlogPage'
 import PostPage from './pages/PostPage'
 import AboutPage from './pages/AboutPage'
 import ContactPage from './pages/ContactPage'
+import BlogMapPage from './pages/BlogMapPage'
 
 function NotFoundPage() {
   return (
@@ -28,6 +29,7 @@ const router = createBrowserRouter([
       { path: 'blog/:slug', element: <PostPage /> },
       { path: 'about', element: <AboutPage /> },
       { path: 'contact', element: <ContactPage /> },
+      { path: 'peta-blog', element: <BlogMapPage /> },
       { path: '*', element: <NotFoundPage /> },
     ],
   },
