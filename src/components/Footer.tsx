@@ -50,7 +50,12 @@ export default function Footer() {
           <span>
             &copy; {year} {siteConfig.name} | Hak Cipta Terpelihara
           </span>
-          <span>Dikuasakan oleh React &amp; WordPress</span>
+          <span>
+            Direka &amp; dibangunkan oleh{' '}
+            <a href="https://www.fitrimahadzir.my" target="_blank" rel="noopener noreferrer">
+              FM
+            </a>
+          </span>
         </div>
       </div>
     </footer>
