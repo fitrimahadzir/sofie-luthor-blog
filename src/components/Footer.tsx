@@ -30,6 +30,9 @@ export default function Footer() {
               <li>
                 <Link to="/contact">Hubungi</Link>
               </li>
+              <li>
+                <Link to="/peta-blog">Peta Blog</Link>
+              </li>
             </ul>
           </div>
 
