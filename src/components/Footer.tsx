@@ -10,39 +10,32 @@ export default function Footer() {
         <div className="footer__grid">
           <div>
             <div className="footer__logo">
-              <img src={siteConfig.logo} alt={`${siteConfig.name} logo`} />
-              <span>{siteConfig.name}</span>
+              <img src={siteConfig.footerLogo} alt={`${siteConfig.name} logo`} />
             </div>
             <p>{siteConfig.footerDescription}</p>
           </div>
 
           <div>
-            <h5>EXPLORE</h5>
+            <h5>TEROKA</h5>
             <ul className="footer__list">
               <li>
-                <Link to="/">Home</Link>
+                <Link to="/">Utama</Link>
               </li>
               <li>
                 <Link to="/blog">Blog</Link>
               </li>
               <li>
-                <Link to="/about">About Us</Link>
+                <Link to="/about">Penulis</Link>
               </li>
               <li>
-                <Link to="/contact">Contact</Link>
+                <Link to="/contact">Hubungi</Link>
               </li>
             </ul>
           </div>
 
           <div>
-            <h5>CONTACT</h5>
+            <h5>HUBUNGI</h5>
             <ul className="footer__list">
-              <li>{siteConfig.address}</li>
-              <li>
-                <a href={`tel:${siteConfig.phone.replace(/\s+/g, '')}`}>
-                  {siteConfig.phone}
-                </a>
-              </li>
               <li>
                 <a href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a>
               </li>
@@ -52,9 +45,9 @@ export default function Footer() {
 
         <div className="footer__bottom">
           <span>
-            &copy; {year} {siteConfig.name} | All Rights Reserved
+            &copy; {year} {siteConfig.name} | Hak Cipta Terpelihara
           </span>
-          <span>Powered by React &amp; WordPress</span>
+          <span>Dikuasakan oleh React &amp; WordPress</span>
         </div>
       </div>
     </footer>

@@ -35,16 +35,17 @@ export default function BlogPage() {
     <>
       <section className="page-hero">
         <div className="container">
-          <h1>THE {siteConfig.name} BLOG</h1>
-          <div className="page-hero__script">stories from the floor</div>
+          <h1>BLOG {siteConfig.name.toUpperCase()}</h1>
+          <div className="page-hero__script">kisah dari ruang kecil ini</div>
+
         </div>
       </section>
 
       <section className="section section--soft">
         <div className="container">
           <SectionHeading
-            title="ALL ARTICLES"
-            description="Tips, workshops, stories and interviews about dance and movement."
+            title="SEMUA ARTIKEL"
+            description="Cerita, renungan dan pelbagai topik yang saya tulis tanpa tema tetap."
           />
 
           <div className="chips">
@@ -53,7 +54,7 @@ export default function BlogPage() {
               className={`chip${activeCategory === 'all' ? ' is-active' : ''}`}
               onClick={() => setCategory('all')}
             >
-              All
+              Semua
             </button>
             {categories.map((category) => (
               <button
@@ -72,11 +73,11 @@ export default function BlogPage() {
           </div>
 
           {loading ? (
-            <div className="loading">Loading posts&hellip;</div>
+            <div className="loading">Memuatkan artikel&hellip;</div>
           ) : error ? (
             <div className="loading">{error}</div>
           ) : posts.length === 0 ? (
-            <div className="loading">No posts found in this category yet.</div>
+            <div className="loading">Tiada artikel dalam kategori ini buat masa ini.</div>
           ) : (
             <>
               <div className="post-grid">
@@ -91,7 +92,7 @@ export default function BlogPage() {
                     type="button"
                     disabled={page <= 1}
                     onClick={() => goToPage(page - 1)}
-                    aria-label="Previous page"
+                    aria-label="Halaman sebelumnya"
                   >
                     &lsaquo;
                   </button>
@@ -110,7 +111,7 @@ export default function BlogPage() {
                     type="button"
                     disabled={page >= totalPages}
                     onClick={() => goToPage(page + 1)}
-                    aria-label="Next page"
+                    aria-label="Halaman seterusnya"
                   >
                     &rsaquo;
                   </button>

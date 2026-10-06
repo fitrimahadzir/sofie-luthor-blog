@@ -3,22 +3,7 @@ import type { Post } from '../types/post'
 export const demoAuthors: Record<string, { name: string; bio: string; avatar: string }> = {
   sofie: {
     name: 'Sofie Luthor',
-    bio: 'Founder of the school and lifelong dancer. Sofie writes about movement, mindset and the joy of dancing.',
-    avatar: '/images/danceschool2-testimonials1.jpg',
-  },
-  kevin: {
-    name: 'Kevin Perry',
-    bio: 'Hip-hop and breakdance teacher with 15 years on the floor. Loves vinyl, sneakers and big moves.',
-    avatar: '/images/danceschool2-testimonials2.jpg',
-  },
-  alice: {
-    name: 'Alice Boyd',
-    bio: 'Jazz, modern and kids dance teacher. Believer that everyone can dance — even you.',
-    avatar: '/images/danceschool2-testimonials3.jpg',
-  },
-  brandon: {
-    name: 'Brandon Ross',
-    bio: 'Ballroom specialist and competition coach. Salsa on Saturdays, waltz on Sundays.',
+    bio: 'Penyelia blog ini. Sofie menulis tentang kehidupan, fikiran, dan segala yang menarik minatnya.',
     avatar: '/images/danceschool2-testimonials1.jpg',
   },
 }
@@ -26,136 +11,138 @@ export const demoAuthors: Record<string, { name: string; bio: string; avatar: st
 export const demoPosts: Post[] = [
   {
     id: 1,
-    slug: 'dance-is-the-hidden-language-of-the-soul',
-    title: 'Dance Is the Hidden Language of the Soul',
+    slug: 'fikiran-menjelang-pagi',
+    title: 'Fikiran Menjelang Pagi',
     excerpt:
-      'Fusce ut velit laoreet, tempus arcu eu, molestie tortor. Nam vel justo cursus, faucibus lorem eget, egestas eros. Why movement says what words cannot.',
-    content: `<p>Fusce ut velit laoreet, tempus arcu eu, molestie tortor. Nam vel justo cursus, faucibus lorem eget, egestas eros. Maecenas eleifend erat at justo fringilla imperdiet id ac magna.</p>
-<p>Dance is one of the oldest ways humans communicate. Long before spoken language, movement carried meaning — joy, fear, celebration, belonging. When we dance, we speak without filters.</p>
-<blockquote>The job of feet is walking, but their hobby is dancing.</blockquote>
-<h2>Why movement matters</h2>
-<p>Ut ultricies imperdiet sodales. Aliquam fringilla aliquam ex sit amet elementum. Proin bibendum sollicitudin feugiat. Dancing releases tension, builds confidence and connects us to others in ways conversation never can.</p>
+      'Ada malam yang membawa fikiran jauh pergi. Renungan peribadi tentang tidur yang lari dan fikiran yang enggan berhenti.',
+    content: `<p>Malam tadi saya tidak dapat tidur. Pukul 12 tengah malam, minda saya masih berlegar ke sana ke mari, menolak untuk berehat.</p>
+<p>Sering kali, menulis selepas pukul 10 malam membangunkan ribut dalam kepala yang enggan berhenti. Saya cuba mendiamkannya, tetapi fikiran itu tidak mahu melepaskan saya.</p>
+<blockquote>Kadang-kadang kita tidak perlu memaksa fikiran untuk berhenti — hanya perlu membiarkannya mengalir.</blockquote>
+<h2>Antara tengah malam hingga subuh</h2>
+<p>Antara pukul 12 hingga 3.30 pagi, saya hanya berjaya lena kira-kira 15 minit. Menjelang 3.30, saya menyerah. Jika tidak dapat berehat, sekurang-kurangnya biarkan minda melarikan diri ke dalam perkataan.</p>
 <ul>
-<li>Boosts mood and reduces stress</li>
-<li>Improves coordination and posture</li>
-<li>Creates real community</li>
+<li>Tidur yang mencukupi benar-benar penting</li>
+<li>Menulis boleh menjadi terapi</li>
+<li>Fikiran yang bercelaru selalunya tenang menjelang pagi</li>
 </ul>
-<h2>Start small</h2>
-<p>You do not need to be great to start. You need to start to be great. Come to a class, feel the music, and let your body find its own rhythm.</p>`,
-    date: '2026-08-01T09:00:00',
+<h2>Pagi yang tenang</h2>
+<p>Apabila akhirnya fajar tiba, kepala terasa lebih ringan. Dokumen, kerja, dan projek menanti, tetapi untuk seketika, kesunyian pagi terasa seperti hadiah.</p>`,
+    date: '2026-08-10T06:00:00',
     author: 'sofie',
     image: '/images/danceschool2-pic1.jpg',
-    categories: ['Dance Styles'],
+    categories: ['Fikiran'],
   },
   {
     id: 2,
-    slug: 'getting-started-with-ballroom-dancing',
-    title: 'Getting Started with Ballroom Dancing',
+    slug: 'tips-menjaga-kulit-sihat',
+    title: 'Tips Menjaga Kulit Sihat',
     excerpt:
-      'Duis dignissim mi ut laoreet mollis. Nunc id tellus finibus mi vel maximus justo. Everything a complete beginner needs to know about ballroom.',
-    content: `<p>Duis dignissim mi ut laoreet mollis. Nunc id tellus finibus mi vel maximus justo lectus. Ballroom dancing sounds intimidating, but the truth is far simpler: it is two people, one song and a shared step.</p>
-<h2>Pick your first style</h2>
-<p>Most beginners start with the waltz or the foxtrot. Both are slower, structured and forgiving. Once you feel comfortable, the rumba and tango open a whole new world of drama and play.</p>
+      'Langkah mudah dan rutin harian untuk kulit yang sihat dan cerah. Tidak perlu produk mahal, hanya konsisten.',
+    content: `<p>Kulit yang sihat bukan sekadar soal kosmetik mahal. Ia bermula dengan rutin harian yang mudah dan konsisten.</p>
+<h2>Bermula dengan asas</h2>
+<p>Bersihkan wajah dua kali sehari, lembapkan selepas mencuci, dan jangan lupa pelindung matahari. Tiga langkah asas ini sudah banyak membantu.</p>
 <ul>
-<li><strong>Waltz</strong> — the classic, elegant and smooth</li>
-<li><strong>Foxtrot</strong> — smooth and conversational</li>
-<li><strong>Rumba</strong> — slow, expressive, romantic</li>
-<li><strong>Tango</strong> — sharp, dramatic and fun</li>
+<li><strong>Bersihkan</strong> — buang kotoran dan minyak</li>
+<li><strong>Lembapkan</strong> — jaga kelembapan kulit</li>
+<li><strong>Lindungi</strong> — selalu pakai pelindung matahari</li>
 </ul>
-<h2>What to wear</h2>
-<p>Comfortable clothes and shoes that slide a little. Heels can wait — first, feel the floor with flat, supportive footwear.</p>
-<blockquote>Every dance begins with a single step.</blockquote>
-<p>Come alone or bring a partner. Nobody is ever turned away from a ballroom floor.</p>`,
-    date: '2026-07-24T10:00:00',
-    author: 'brandon',
+<h2>Jangan lupa minum air</h2>
+<p>Penghidratan penting. Kulit yang sihat datang dari dalam — pastikan anda minum air secukupnya dan tidur yang cukup.</p>
+<blockquote>Kulit yang sihat bukan tentang siapa anda mahu menjadi, tetapi tentang menjaga diri anda.</blockquote>
+<p>Cuba beri masa beberapa minggu sebelum menilai hasil. Konsistensi adalah kuncinya.</p>`,
+    date: '2026-08-03T10:00:00',
+    author: 'sofie',
     image: '/images/danceschool2-pic3.jpg',
-    categories: ['Dance Styles', 'Ballroom'],
+    categories: ['Kecantikan'],
   },
   {
     id: 3,
-    slug: 'jazz-and-modern-dance-for-absolute-beginners',
-    title: 'Jazz & Modern Dance for Absolute Beginners',
+    slug: 'review-buku-yang-saya-baca-bulan-ini',
+    title: 'Review Buku yang Saya Baca Bulan Ini',
     excerpt:
-      'Ut ultricies imperdiet sodales. Aliquam fringilla aliquam ex sit amet elementum. How jazz and modern classes build strength, style and freedom.',
-    content: `<p>Ut ultricies imperdiet sodales. Aliquam fringilla aliquam ex sit amet elementum. Proin bibendum sollicitudin feugiat. Jazz and modern dance share one obsession: freedom of expression.</p>
-<h2>Jazz</h2>
-<p>Jazz is sharp, syncopated and full of attitude. Big isolations, strong lines and music that makes you want to move. It is the perfect style for building rhythm and stage presence.</p>
-<h2>Modern</h2>
-<p>Modern dance throws the rulebook away. It uses gravity, breath and emotion. Great for anyone who wants to feel every step instead of just performing it.</p>
-<blockquote>Don't be afraid to look silly. Be afraid of never trying.</blockquote>
-<h2>What beginners should know</h2>
+      'Ulasan ringkas tentang buku yang menemani saya sepanjang bulan ini — apa yang saya suka dan apa yang membuat saya berfikir.',
+    content: `<p>Setiap bulan saya cuba membaca sekurang-kurangnya satu buku. Bulan ini, pilihan saya membawa saya ke dalam dunia yang sangat berbeza.</p>
+<h2>Apa yang menarik minat saya</h2>
+<p>Gaya penulisan yang mengalir, watak yang terasa hidup, dan tema tentang manusia yang membuat saya berfikir tentang kehidupan sendiri.</p>
+<blockquote>Buku yang baik bukan hanya menghiburkan, tetapi mengubah cara kita melihat dunia.</blockquote>
+<h2>Adakah saya mengesyorkannya?</h2>
 <ul>
-<li>Wear socks or soft shoes</li>
-<li>Stretch before class</li>
-<li>Give yourself six weeks before judging progress</li>
+<li>Ya, jika anda suka kisah yang mendalam</li>
+<li>Ya, jika anda seronok membaca renungan tentang kehidupan</li>
+<li>Langkau jika anda mencari bacaan yang ringan sahaja</li>
 </ul>
-<p>Every expert was once a beginner. The studio is the safest place in the world to try something new.</p>`,
-    date: '2026-07-15T09:30:00',
-    author: 'alice',
+<p>Secara keseluruhan, buku ini bernilai masa. Saya tidak sabar untuk berkongsi pilihan bulan hadapan.</p>`,
+    date: '2026-07-28T09:00:00',
+    author: 'sofie',
     image: '/images/danceschool2-pic2.jpg',
-    categories: ['Dance Styles', 'Jazz & Modern'],
+    categories: ['Ulasan', 'Buku'],
   },
   {
     id: 4,
-    slug: 'meet-our-team-25-years-on-the-dance-floor',
-    title: 'Meet Our Team: 25 Years on the Dance Floor',
+    slug: 'renungan-tentang-kesabaran',
+    title: 'Renungan Tentang Kesabaran',
     excerpt:
-      'Mauris rhoncus orci in imperdiet placerat. Vestibulum euismod nisl suscipit ligula volutpat. The people behind the studio and what drives them.',
-    content: `<p>Mauris rhoncus orci in imperdiet placerat. Vestibulum euismod nisl suscipit ligula volutpat, a feugiat urna maximus. For 25 years we have been dancing, teaching and growing together.</p>
-<h2>Kevin Perry</h2>
-<p>Hip-hop and breakdance teacher, fifteen years on the floor. Kevin believes every street move tells a story — you just have to listen with your feet.</p>
-<h2>Alice Boyd</h2>
-<p>Jazz, modern and kids dance teacher. Alice turned a childhood hobby into a career and has never looked back. She teaches with a simple promise: everyone can dance.</p>
-<h2>Brandon Ross</h2>
-<p>Ballroom specialist and competition coach. Brandon has trained champions and absolute beginners — and says he is equally proud of both.</p>
-<blockquote>25 years of experience. We are still the same kids who fell in love with music.</blockquote>
-<p>Come say hello. The kettle is always on between classes.</p>`,
-    date: '2026-07-08T14:00:00',
+      'Kesabaran jarang terasa seperti sesuatu yang sedang berlaku — sehingga ia selesai. Fikiran tentang menunggu, harapan dan mengalir bersama masa.',
+    content: `<p>Ada sesuatu yang sukar tentang menunggu. Kita mahukan hasil segera, jawapan sekarang, jalan yang jelas.</p>
+<p>Tetapi banyak perkara dalam hidup — pertumbuhan, penyembuhan, hubungan — mengambil masa. Kesabaran bukan tentang berdiam diri; ia tentang kekal hadir sementara masa bekerja.</p>
+<h2>Belajar mempercayai proses</h2>
+<p>Kadang-kadang kita tidak dapat melihat kemajuan, namun ia berlaku di celah-celah ketidaksabaran kita. Setiap hari kecil, setiap langkah halus.</p>
+<blockquote>Kesabaran bukan kebolehan menunggu, tetapi kebolehan mengekalkan sikap yang baik semasa menunggu.</blockquote>
+<ul>
+<li>Beri masa untuk proses</li>
+<li>Percaya bahawa siang pasti tiba</li>
+<li>Bersikap lembut terhadap diri sendiri</li>
+</ul>
+<p>Jadi, jika hidup terasa perlahan ketika ini, ketahuilah anda bukan ketinggalan. Anda hanya dalam perjalanan.</p>`,
+    date: '2026-07-20T14:00:00',
     author: 'sofie',
     image: '/images/danceschool2-pic5.jpg',
-    categories: ['Team', 'News'],
+    categories: ['Fikiran', 'Psikologi'],
   },
   {
     id: 5,
-    slug: 'why-kids-should-start-dancing-early',
-    title: 'Why Kids Should Start Dancing Early',
+    slug: 'panduan-permulaan-melabur',
+    title: 'Panduan Permulaan Melabur',
     excerpt:
-      'Duis dignissim mi ut laoreet mollis. Nunc id tellus finibus mi vel. The physical, social and emotional benefits of dance classes for children aged 2 to 8.',
-    content: `<p>Duis dignissim mi ut laoreet mollis. Nunc id tellus finibus mi vel maximus justo lectus. Dance classes for young children are about far more than learning steps.</p>
-<h2>Confidence before choreography</h2>
-<p>At four years old, standing in front of a mirror and copying a rhythm builds the kind of confidence that carries into classrooms and playgrounds for a lifetime.</p>
-<h2>What kids gain</h2>
+      'Langkah pertama untuk memahami pelaburan tanpa rasa takut. Sumber yang mudah difahami untuk mereka yang baru bermula.',
+    content: `<p>Melabur kedengaran menakutkan, terutamanya bagi mereka yang baru bermula. Tetapi memahami asasnya lebih mudah daripada yang disangka.</p>
+<h2>Mulakan dengan ilmu</h2>
+<p>Sebelum meletakkan wang, fahami apa yang anda beli. Baca, tanya, dan jangan tergesa-gesa membuat keputusan berdasarkan emosi.</p>
+<h2>Beberapa prinsip asas</h2>
 <ul>
-<li>Coordination and balance</li>
-<li>Listening and following instructions</li>
-<li>Friendship and teamwork</li>
-<li>Self-expression without words</li>
+<li><strong>Diversifikasi</strong> — jangan letakkan semua telur dalam satu bakul</li>
+<li><strong>Long-term</strong> — fikirkan jangka panjang</li>
+<li><strong>Konsisten</strong> — melabur sedikit tetapi kerap</li>
 </ul>
-<blockquote>Watch a child dance and you will remember why you started.</blockquote>
-<h2>Keep it playful</h2>
-<p>The best kids classes feel like play, not practice. Music, games and gentle structure — that is the recipe we have used for two decades.</p>`,
-    date: '2026-06-28T11:00:00',
-    author: 'alice',
+<blockquote>Melabur bukan tentang menjadi kaya dengan cepat, tetapi tentang membina masa depan secara berperingkat.</blockquote>
+<h2>Risiko itu nyata</h2>
+<p>Semua pelaburan ada risikonya. Pastikan anda hanya melabur wang yang anda mampu biarkan untuk jangka masa panjang, dan dapatkan nasihat jika perlu.</p>`,
+    date: '2026-07-10T11:00:00',
+    author: 'sofie',
     image: '/images/danceschool2-pic6.jpg',
-    categories: ['Tips', 'Kids'],
+    categories: ['Kewangan'],
   },
   {
     id: 6,
-    slug: 'workshop-recap-a-flamenco-weekend',
-    title: 'Workshop Recap: A Flamenco Weekend',
+    slug: 'catatan-perjalanan-ke-luar-bandar',
+    title: 'Catatan Perjalanan ke Luar Bandar',
     excerpt:
-      'Finibus, eleifend mi vel maximus justo lectus. What happened when the studio filled with castanets, stomps and a whole lot of passion.',
-    content: `<p>Finibus, eleifend mi vel maximus justo lectus. Last weekend we turned the studio into a little corner of Andalusia for two days of flamenco.</p>
-<h2>Day one: rhythm first</h2>
-<p>We started with the compás — the heartbeat of flamenco. Hands clapping, feet stomping, everyone learning that rhythm lives in the body before it ever reaches the instrument.</p>
-<h2>Day two: putting it together</h2>
-<p>Arms, posture, and the fierce joy of the baile. By the end of Sunday, absolute beginners were performing short sequences with real fire.</p>
-<blockquote>Flamenco is not a style. It is a feeling with a tempo.</blockquote>
-<h2>Next workshops</h2>
-<p>Join us for Tango on 22–24 June, Foxtrot on 26–29 June and Rumba in August. Book your spot — places go fast.</p>`,
-    date: '2026-06-20T13:00:00',
-    author: 'brandon',
+      'Satu hujung minggu melarikan diri dari hiruk-pikuk bandar. Catatan kecil tentang pemandangan, makanan dan kedamaian.',
+    content: `<p>Kadang-kadang kita hanya perlukan perubahan suasana. Hujung minggu lalu, saya membawa diri keluar dari bandar.</p>
+<h2>Perjalanan yang menyegarkan</h2>
+<p>Udara yang lebih bersih, pemandangan yang lebih luas, dan langkah yang lebih perlahan. Semua terasa lebih ringan di luar bandar.</p>
+<h2>Apa yang saya nikmati</h2>
+<ul>
+<li>Pemandangan matahari terbenam yang memukau</li>
+<li>Makanan tempatan yang mengenyangkan</li>
+<li>Kesunyian yang jarang ditemui di bandar</li>
+</ul>
+<blockquote>Perjalanan kecil mengingatkan kita bahawa dunia lebih luas daripada bilik kita.</blockquote>
+<h2>Kembali dengan tenaga baru</h2>
+<p>Kembali ke rumah membawa semangat yang diperbaharui. Kadang-kadang, rehat yang jauh sedikit adalah yang paling diperlukan.</p>`,
+    date: '2026-07-02T13:00:00',
+    author: 'sofie',
     image: '/images/danceschool2-pic7.jpg',
-    categories: ['Workshops', 'News'],
+    categories: ['Info Am', 'Perjalanan'],
   },
 ]

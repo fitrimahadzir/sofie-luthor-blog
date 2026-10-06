@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom'
 import type { Post } from '../types/post'
 
 function formatDate(date: string): string {
-  return new Date(date).toLocaleDateString('en-US', {
+  return new Date(date).toLocaleDateString('ms-MY', {
     year: 'numeric',
     month: 'short',
     day: 'numeric',
@@ -34,7 +34,7 @@ export default function PostCard({ post }: { post: Post }) {
         <p className="post-card__excerpt">{post.excerpt}</p>
 
         <Link to={`/blog/${post.slug}`} className="post-card__link">
-          Read more
+          Baca lagi
           <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
             <path
               d="M5 12h14m-6-6 6 6-6 6"

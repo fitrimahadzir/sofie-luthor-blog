@@ -5,7 +5,7 @@ import { siteConfig } from '../config/site'
 import type { Post } from '../types/post'
 
 function formatDate(date: string): string {
-  return new Date(date).toLocaleDateString('en-US', {
+  return new Date(date).toLocaleDateString('ms-MY', {
     year: 'numeric',
     month: 'long',
     day: 'numeric',
@@ -26,7 +26,7 @@ function AuthorBox({ post }: { post: Post }) {
           <h4>{post.author}</h4>
           <p>
             {post.authorBio ??
-              `Writer and contributor at ${siteConfig.name}.`}
+              `Penulis di ${siteConfig.name}.`}
           </p>
         </div>
       </div>
@@ -45,16 +45,16 @@ export default function PostPage() {
     .slice(0, 3)
 
   if (loading) {
-    return <div className="loading">Loading article&hellip;</div>
+    return <div className="loading">Memuatkan artikel&hellip;</div>
   }
 
   if (error || !post) {
     return (
       <div className="container" style={{ padding: '120px 0', textAlign: 'center' }}>
-        <h2>Article not found</h2>
-        <p>The post you are looking for does not exist or was removed.</p>
+        <h2>Artikel tidak dijumpai</h2>
+        <p>Artikel yang anda cari tidak wujud atau telah dikeluarkan.</p>
         <Link to="/blog" className="button button--dark">
-          Back to the blog
+          Kembali ke blog
         </Link>
       </div>
     )
@@ -105,7 +105,7 @@ export default function PostPage() {
           {relatedPosts.length > 0 && (
             <div style={{ marginTop: 80 }}>
               <h2 style={{ textAlign: 'center', marginBottom: 40 }}>
-                RELATED POSTS
+                ARTIKEL BERKAITAN
               </h2>
               <div className="post-grid">
                 {relatedPosts.map((item) => (
@@ -117,7 +117,7 @@ export default function PostPage() {
 
           <div style={{ textAlign: 'center', marginTop: 56 }}>
             <Link to="/blog" className="button button--outline">
-              &larr; Back to the blog
+              &larr; Kembali ke blog
             </Link>
           </div>
         </div>

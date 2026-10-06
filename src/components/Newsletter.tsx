@@ -20,29 +20,29 @@ export default function Newsletter() {
             backgroundImage: `url(/images/danceschool2-columnbg4.jpg)`,
           }}
         >
-          <h2>IF YOU HIT A WALL, DANCE ON TOP OF IT</h2>
-          <div className="cta__script">never miss a post</div>
+          <h2>JANGAN TERLEPAS ARTIKEL TERBARU</h2>
+          <div className="cta__script">langgan surat berita</div>
           <p>
-            Join the newsletter for new posts, workshop dates and dance tips.
-            No spam — just good moves.
+            Langgan untuk menerima artikel terbaru terus ke e-mel anda. Tiada
+            spam — hanya tulisan jujur dari saya.
           </p>
 
           {sent ? (
             <p className="newsletter-success">
-              Thanks {siteConfig.name} — you are on the list!
+              Terima kasih {siteConfig.name} — anda berjaya melanggan!
             </p>
           ) : (
             <form className="newsletter" onSubmit={handleSubmit}>
               <input
                 type="email"
                 required
-                placeholder="Your e-mail address"
+                placeholder="Alamat e-mel anda"
                 value={email}
                 onChange={(event) => setEmail(event.target.value)}
-                aria-label="Your e-mail address"
+                aria-label="Alamat e-mel anda"
               />
               <button type="submit" className="button button--accent">
-                Subscribe
+                Langgan
               </button>
             </form>
           )}

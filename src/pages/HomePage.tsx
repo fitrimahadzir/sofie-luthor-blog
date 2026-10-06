@@ -14,16 +14,16 @@ export default function HomePage() {
       <section className="hero">
         <div className="container">
           <div className="hero__inner">
-            <span className="hero__tag">Welcome to {siteConfig.name}</span>
+            <span className="hero__tag">Selamat datang ke {siteConfig.name}</span>
             <h1>{siteConfig.heroTitle}</h1>
             <div className="hero__script">{siteConfig.heroScript}</div>
             <p>{siteConfig.description}</p>
             <div className="hero__actions">
               <Link to="/blog" className="button button--light">
-                Read the blog
+                Baca blog
               </Link>
               <Link to="/about" className="button button--accent">
-                About us
+                Tentang saya
               </Link>
             </div>
           </div>
@@ -45,13 +45,13 @@ export default function HomePage() {
                 src="/images/danceschool2-icon1.png"
                 alt=""
               />
-              <span className="promo-card__tag">Latest Posts</span>
+              <span className="promo-card__tag">Artikel Terbaru</span>
               <h3>
-                Fresh
+                Baharu
                 <br />
-                From the
+                Di
                 <br />
-                Floor
+                Blog
               </h3>
             </Link>
             <Link
@@ -66,13 +66,13 @@ export default function HomePage() {
                 src="/images/danceschool2-icon1.png"
                 alt=""
               />
-              <span className="promo-card__tag">Our Team</span>
+              <span className="promo-card__tag">Saya &amp; Perjalanan</span>
               <h3>
-                Meet the
+                Tentang
                 <br />
-                Instructors
+                Saya &
                 <br />
-                Behind It
+                Kisahku
               </h3>
             </Link>
           </div>
@@ -82,13 +82,13 @@ export default function HomePage() {
       <section className="section section--soft">
         <div className="container">
           <SectionHeading
-            title="WHAT'S NEW ON THE BLOG"
-            script="latest stories"
-            description="Tips, workshops, stories and interviews from the dance floor."
+            title="APA YANG TERBARU DI BLOG"
+            script="kisah terkini"
+            description="Kisah, fikiran dan idea terbaru saya — ditulis khas untuk anda."
           />
 
           {loading ? (
-            <div className="loading">Loading posts&hellip;</div>
+            <div className="loading">Memuatkan artikel&hellip;</div>
           ) : featured ? (
             <div className="featured-post">
               <div className="featured-post__media">
@@ -106,7 +106,7 @@ export default function HomePage() {
                 <p>{featured.excerpt}</p>
                 <div>
                   <Link to={`/blog/${featured.slug}`} className="button button--dark button--sm">
-                    Read article
+                    Baca artikel
                   </Link>
                 </div>
               </div>
@@ -121,7 +121,7 @@ export default function HomePage() {
 
           <div style={{ textAlign: 'center', marginTop: 48 }}>
             <Link to="/blog" className="button button--outline">
-              View all posts
+              Lihat semua artikel
             </Link>
           </div>
         </div>

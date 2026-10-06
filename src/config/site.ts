@@ -1,21 +1,19 @@
 export const siteConfig = {
   name: 'Sofie Luthor',
-  tagline: 'Dance & Lifestyle Blog',
-  heroTitle: 'DANCE IS THE HIDDEN LANGUAGE OF THE SOUL',
-  heroScript: "let's dance!",
-  logo: '/images/danceschool2.png',
+  tagline: 'Blog Peribadi',
+  heroTitle: 'CERITA, FIKIR & SEGALA YANG DI ANTARANYA',
+  heroScript: 'selamat datang ke ruang saya',
+  logo: '/logo/logo ideaAsset 1.svg',
+  footerLogo: '/logo/logo ideaAsset 3.svg',
   description:
-    'A blog about dance, movement and lifestyle. Tips, workshops, stories and interviews from the dance floor.',
+    'Hai, saya Sofie. Ini blog peribadi saya — ruang untuk berkongsi cerita, fikiran, dan serba sedikit tentang kehidupan seharian.',
   footerDescription:
-    'A blog about dance, movement and lifestyle. Tips, workshops, stories and interviews from the dance floor.',
-  address: 'Level 13, 2 Elizabeth St, Melbourne, Victoria 3000, Australia',
-  phone: '+61 (0) 383 766 284',
+    'Ruang peribadi saya di internet. Tempat untuk berkongsi cerita, fikiran, dan segala yang saya minati.',
   email: 'hello@sofieluthor.com',
-  openingHours: 'Monday - Friday: 08:00 AM - 05:00 PM',
   socials: {
     twitter: '#',
     facebook: '#',
-    instagram: '#',
+    instagram: 'https://www.instagram.com/sofieluthor/',
   },
   // WordPress REST API integration
   // Set useWpApi to true and update wpApiUrl once your WordPress site is ready.

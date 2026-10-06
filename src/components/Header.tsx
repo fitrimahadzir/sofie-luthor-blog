@@ -3,10 +3,10 @@ import { NavLink } from 'react-router-dom'
 import { siteConfig } from '../config/site'
 
 const NAV_ITEMS = [
-  { label: 'Home', to: '/' },
+  { label: 'Utama', to: '/' },
   { label: 'Blog', to: '/blog' },
-  { label: 'About', to: '/about' },
-  { label: 'Contact', to: '/contact' },
+  { label: 'Penulis', to: '/about' },
+  { label: 'Hubungi', to: '/contact' },
 ]
 
 export default function Header() {
@@ -17,13 +17,12 @@ export default function Header() {
       <div className="container header__inner">
         <NavLink to="/" className="header__logo" onClick={() => setOpen(false)}>
           <img src={siteConfig.logo} alt={`${siteConfig.name} logo`} />
-          <span>{siteConfig.name}</span>
         </NavLink>
 
         <button
           type="button"
           className={`header__burger${open ? ' is-open' : ''}`}
-          aria-label="Toggle menu"
+          aria-label="Togol menu"
           aria-expanded={open}
           onClick={() => setOpen((v) => !v)}
         >
@@ -32,7 +31,7 @@ export default function Header() {
           <span />
         </button>
 
-        <nav className={`nav${open ? ' is-open' : ''}`} aria-label="Main menu">
+        <nav className={`nav${open ? ' is-open' : ''}`} aria-label="Menu utama">
           <ul className="nav__list">
             {NAV_ITEMS.map((item) => (
               <li key={item.to}>
