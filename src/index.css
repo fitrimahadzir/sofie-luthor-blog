@@ -1069,7 +1069,9 @@ button {
 /* ---------- Article / post page ---------- */
 
 .post-hero {
-  background: linear-gradient(160deg, #131316 0%, #24242b 100%);
+  background:
+    linear-gradient(160deg, rgba(19, 19, 22, 0.84) 0%, rgba(36, 36, 43, 0.84) 100%),
+    url('https://visit.sofieluthor.com/images/banner.jpeg') center / cover no-repeat #131316;
   color: #fff;
   text-align: center;
   padding: 80px 0 70px;
@@ -1559,7 +1561,9 @@ button {
 }
 
 .page-hero {
-  background: linear-gradient(160deg, #131316 0%, #24242b 100%);
+  background:
+    linear-gradient(160deg, rgba(19, 19, 22, 0.84) 0%, rgba(36, 36, 43, 0.84) 100%),
+    url('https://visit.sofieluthor.com/images/banner.jpeg') center / cover no-repeat #131316;
   color: #fff;
   text-align: center;
   padding: 90px 0 120px;
