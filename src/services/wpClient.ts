@@ -1,6 +1,6 @@
 import { siteConfig } from '../config/site'
 import { demoAuthors, demoPosts } from '../data/demoPosts'
-import type { Post, PostsPage, WpPost } from '../types/post'
+import type { Post, PostsPage, WpPost, WpTerm } from '../types/post'
 
 const POSTS_PER_PAGE = 6
 
@@ -87,7 +87,7 @@ async function request(path: string): Promise<Response> {
 }
 
 async function fetchWpPosts(
-  categorySlug?: string,
+  category?: string,
   page = 1,
   search?: string,
 ): Promise<PostsPage> {
@@ -96,8 +96,12 @@ async function fetchWpPosts(
     per_page: String(POSTS_PER_PAGE),
     page: String(page),
   })
-  if (categorySlug && categorySlug !== 'all') {
-    params.set('categories', categorySlug)
+  if (category && category !== 'all') {
+    const categoryId = await resolveCategoryId(category)
+    if (categoryId === null) {
+      return { posts: [], totalPages: 1, total: 0 }
+    }
+    params.set('categories', String(categoryId))
   }
   if (search) {
     params.set('search', search)
@@ -119,10 +123,23 @@ async function fetchWpPost(slug: string): Promise<Post | undefined> {
   return mapWpPost(raw)
 }
 
-async function fetchWpCategories(): Promise<string[]> {
-  const response = await request('/wp/v2/categories?per_page=100')
-  const data = (await response.json()) as Array<{ id: number; name: string; slug: string }>
-  return data.map((cat) => cat.name)
+let categoryCache: WpTerm[] | null = null
+
+async function fetchWpCategories(): Promise<WpTerm[]> {
+  if (categoryCache) return categoryCache
+  const response = await request('/wp/v2/categories?per_page=100&hide_empty=true')
+  const data = (await response.json()) as WpTerm[]
+  categoryCache = data
+  return data
+}
+
+/** Resolves a category name (or slug) from the UI into a WordPress term ID. */
+async function resolveCategoryId(category: string): Promise<number | null> {
+  const needle = category.trim().toLowerCase()
+  const match = (await fetchWpCategories()).find(
+    (cat) => cat.name.toLowerCase() === needle || cat.slug.toLowerCase() === needle,
+  )
+  return match ? match.id : null
 }
 
 export const wpService = {
@@ -136,7 +153,8 @@ export const wpService = {
       return [...new Set(demoPosts.flatMap((p) => p.categories))]
     }
     try {
-      return await fetchWpCategories()
+      const cats = await fetchWpCategories()
+      return cats.map((cat) => cat.name)
     } catch (error) {
       console.warn('[wp] Failed to load categories, using demo data.', error)
       return [...new Set(demoPosts.flatMap((p) => p.categories))]

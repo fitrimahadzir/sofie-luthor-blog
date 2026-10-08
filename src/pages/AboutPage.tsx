@@ -84,12 +84,12 @@ export default function AboutPage() {
         <div className="container">
           <div className="about-profile">
             <div className="about-profile__media">
-              <img src="/images/danceschool2-pic1.jpg" alt={siteConfig.name} />
+              <img src="/images/image-penulis.webp" alt={siteConfig.name} />
             </div>
             <div className="about-profile__body">
               <h3>Sofinah binti Lamudin</h3>
               <p className="about-profile__role">
-                Blogger sepenuh masa &middot; Internet Marketer &middot; Penulis &amp; Pelukis
+                Blogger sepenuh masa &middot; Tiktok Live Streamer &middot; Internet Marketer &middot; Penulis &amp; Pelukis
               </p>
               <p>
                 Anak jati Wilayah Persekutuan Labuan. Berkahwin pada 26 Disember

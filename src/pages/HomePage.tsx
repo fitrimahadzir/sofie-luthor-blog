@@ -85,7 +85,7 @@ export default function HomePage() {
         <div className="container">
           <SectionHeading
             title="APA YANG TERBARU DI BLOG"
-            script="kisah terkini"
+            script="artikel terkini"
             description="Kisah, fikiran dan idea terbaru saya — ditulis khas untuk anda."
           />
 

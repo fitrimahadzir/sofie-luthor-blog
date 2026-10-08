@@ -704,9 +704,10 @@ button {
 }
 
 .about-profile__body h3 {
-  font-family: var(--font-script);
+  font-family: var(--font-body);
+  font-weight: 700;
   font-size: clamp(1.8rem, 3.5vw, 2.6rem);
-  color: var(--accent);
+  color: #191919;
   margin-bottom: 16px;
 }
 
@@ -731,6 +732,10 @@ button {
   font-weight: 700;
   color: var(--accent);
   letter-spacing: 0.4px;
+}
+
+.about-profile + .section-heading {
+  margin-top: 64px;
 }
 
 .about-text {
