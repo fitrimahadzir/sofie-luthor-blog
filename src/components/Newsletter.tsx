@@ -12,7 +12,7 @@ export default function Newsletter() {
   }
 
   return (
-    <section className="section" style={{ paddingBottom: 0 }}>
+    <section className="section" style={{ paddingBottom: 90 }}>
       <div className="container">
         <div
           className="cta"

@@ -4,7 +4,7 @@ export const demoAuthors: Record<string, { name: string; bio: string; avatar: st
   sofie: {
     name: 'Sofie Luthor',
     bio: 'Penyelia blog ini. Sofie menulis tentang kehidupan, fikiran, dan segala yang menarik minatnya.',
-    avatar: '/images/danceschool2-testimonials1.jpg',
+    avatar: '/images/dp-sementara.jpg',
   },
 }
 
@@ -29,7 +29,7 @@ export const demoPosts: Post[] = [
 <p>Apabila akhirnya fajar tiba, kepala terasa lebih ringan. Dokumen, kerja, dan projek menanti, tetapi untuk seketika, kesunyian pagi terasa seperti hadiah.</p>`,
     date: '2026-08-10T06:00:00',
     author: 'sofie',
-    image: '/images/danceschool2-pic1.jpg',
+    image: '/images/3-4 ratio.webp',
     categories: ['Fikiran'],
   },
   {
@@ -52,7 +52,7 @@ export const demoPosts: Post[] = [
 <p>Cuba beri masa beberapa minggu sebelum menilai hasil. Konsistensi adalah kuncinya.</p>`,
     date: '2026-08-03T10:00:00',
     author: 'sofie',
-    image: '/images/danceschool2-pic3.jpg',
+    image: '/images/3-4 ratio.webp',
     categories: ['Kecantikan'],
   },
   {
@@ -74,7 +74,7 @@ export const demoPosts: Post[] = [
 <p>Secara keseluruhan, buku ini bernilai masa. Saya tidak sabar untuk berkongsi pilihan bulan hadapan.</p>`,
     date: '2026-07-28T09:00:00',
     author: 'sofie',
-    image: '/images/danceschool2-pic2.jpg',
+    image: '/images/3-4 ratio.webp',
     categories: ['Ulasan', 'Buku'],
   },
   {
@@ -96,7 +96,7 @@ export const demoPosts: Post[] = [
 <p>Jadi, jika hidup terasa perlahan ketika ini, ketahuilah anda bukan ketinggalan. Anda hanya dalam perjalanan.</p>`,
     date: '2026-07-20T14:00:00',
     author: 'sofie',
-    image: '/images/danceschool2-pic5.jpg',
+    image: '/images/3-4 ratio.webp',
     categories: ['Fikiran', 'Psikologi'],
   },
   {
@@ -119,7 +119,7 @@ export const demoPosts: Post[] = [
 <p>Semua pelaburan ada risikonya. Pastikan anda hanya melabur wang yang anda mampu biarkan untuk jangka masa panjang, dan dapatkan nasihat jika perlu.</p>`,
     date: '2026-07-10T11:00:00',
     author: 'sofie',
-    image: '/images/danceschool2-pic6.jpg',
+    image: '/images/3-4 ratio.webp',
     categories: ['Kewangan'],
   },
   {
@@ -142,7 +142,7 @@ export const demoPosts: Post[] = [
 <p>Kembali ke rumah membawa semangat yang diperbaharui. Kadang-kadang, rehat yang jauh sedikit adalah yang paling diperlukan.</p>`,
     date: '2026-07-02T13:00:00',
     author: 'sofie',
-    image: '/images/danceschool2-pic7.jpg',
+    image: '/images/3-4 ratio.webp',
     categories: ['Info Am', 'Perjalanan'],
   },
 ]

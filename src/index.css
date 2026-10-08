@@ -1512,6 +1512,10 @@ button {
   font-size: 1rem;
 }
 
+.footer__about {
+  max-width: 400px;
+}
+
 .footer__logo {
   display: flex;
   align-items: center;
@@ -1552,6 +1556,10 @@ button {
 }
 
 .footer__bottom a {
+  color: var(--accent);
+}
+
+.footer__bottom span:first-child {
   color: var(--accent);
 }
 

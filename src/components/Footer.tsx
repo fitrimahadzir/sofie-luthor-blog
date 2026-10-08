@@ -12,7 +12,7 @@ export default function Footer() {
             <div className="footer__logo">
               <img src={siteConfig.footerLogo} alt={`${siteConfig.name} logo`} />
             </div>
-            <p>{siteConfig.footerDescription}</p>
+            <p className="footer__about">{siteConfig.footerDescription}</p>
           </div>
 
           <div>
@@ -48,7 +48,7 @@ export default function Footer() {
 
         <div className="footer__bottom">
           <span>
-            &copy; {year} {siteConfig.name} | Hak Cipta Terpelihara
+            <span className="text-pink-500">&copy;</span> {year} {siteConfig.name} | Hak Cipta Terpelihara
           </span>
           <span>
             Direka &amp; dibangunkan oleh{' '}

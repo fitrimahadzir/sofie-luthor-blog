@@ -8,7 +8,7 @@ export const siteConfig = {
   description:
     'Hai, saya Sofie. Ini blog peribadi saya — ruang untuk berkongsi cerita, fikiran, dan serba sedikit tentang kehidupan seharian.',
   footerDescription:
-    'Ruang peribadi saya di internet. Tempat untuk berkongsi cerita, fikiran, dan segala yang saya minati.',
+    'Seorang isteri, Content & Digital Creator, dan TikTok Live Host yang menetap di WP. Labuan. Gemar berkongsi bakat sebagai Ghost Writer dan Blogger, sambil meluangkan masa dengan minat mendalam terhadap dunia seni, penulisan jurnal, membaca, dan menyayangi haiwan.',
   email: 'hello@sofieluthor.com',
   socials: {
     twitter: '#',

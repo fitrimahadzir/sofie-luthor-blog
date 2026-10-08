@@ -7,14 +7,13 @@ import { siteConfig } from '../config/site'
 
 export default function HomePage() {
   const { posts, loading } = usePosts('all', 1)
-  const [featured, ...recent] = posts
 
   return (
     <>
       <section className="hero">
         <div className="container">
           <div className="hero__inner">
-            <span className="hero__tag">Selamat datang ke {siteConfig.name}</span>
+            <span className="hero__tag">Selamat datang ke Sofie Luthor Blog</span>
             <h1>{siteConfig.heroTitle}</h1>
             <div className="hero__script">{siteConfig.heroScript}</div>
             <p>{siteConfig.description}</p>
@@ -33,7 +32,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="section" style={{ paddingTop: 0 }}>
+      <section className="section section--soft" style={{ paddingTop: 0 }}>
         <div className="container">
           <div className="promo-strip">
             <Link
@@ -90,34 +89,10 @@ export default function HomePage() {
             description="Kisah, fikiran dan idea terbaru saya — ditulis khas untuk anda."
           />
 
-          {loading ? (
-            <div className="loading">Memuatkan artikel&hellip;</div>
-          ) : featured ? (
-            <div className="featured-post">
-              <div className="featured-post__media">
-                <Link to={`/blog/${featured.slug}`} aria-label={featured.title}>
-                  <img src={featured.image} alt={featured.title} />
-                </Link>
-              </div>
-              <div className="featured-post__body">
-                <span className="chip featured-post__tag">
-                  {featured.categories[0]}
-                </span>
-                <h2>
-                  <Link to={`/blog/${featured.slug}`}>{featured.title}</Link>
-                </h2>
-                <p>{featured.excerpt}</p>
-                <div>
-                  <Link to={`/blog/${featured.slug}`} className="button button--dark button--sm">
-                    Baca artikel
-                  </Link>
-                </div>
-              </div>
-            </div>
-          ) : null}
+          {loading ? <div className="loading">Memuatkan artikel&hellip;</div> : null}
 
           <div className="post-grid">
-            {recent.slice(0, 3).map((post) => (
+            {posts.slice(0, 3).map((post) => (
               <PostCard key={post.id} post={post} />
             ))}
           </div>
