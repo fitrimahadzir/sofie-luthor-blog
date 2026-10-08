@@ -380,7 +380,7 @@ button {
 .hero {
   position: relative;
   background:
-    linear-gradient(160deg, rgba(19, 19, 22, 0.84) 0%, rgba(36, 36, 43, 0.84) 100%),
+    linear-gradient(160deg, rgba(92, 15, 46, 0.84) 0%, rgba(92, 15, 46, 0.84) 100%),
     url('https://visit.sofieluthor.com/images/banner.jpeg') center / cover no-repeat #131316;
   color: #fff;
   overflow: hidden;
@@ -533,7 +533,7 @@ button {
 }
 
 .post-card__media {
-  aspect-ratio: 780 / 905;
+  aspect-ratio: 4 / 3;
   overflow: hidden;
   background: var(--bg-soft);
 }
@@ -1008,14 +1008,27 @@ button {
 /* ---------- CTA / newsletter ---------- */
 
 .cta {
+  position: relative;
+  overflow: hidden;
   background: var(--dark-2);
-  background-image: linear-gradient(rgba(19, 19, 22, 0.82), rgba(19, 19, 22, 0.82));
   background-size: cover;
   background-position: center bottom;
   border-radius: var(--radius-lg);
   color: #fff;
   text-align: center;
   padding: 90px 8%;
+}
+
+.cta::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(92, 15, 46, 0.82);
+}
+
+.cta > * {
+  position: relative;
+  z-index: 1;
 }
 
 .cta h2 {
@@ -1087,7 +1100,7 @@ button {
 
 .post-hero {
   background:
-    linear-gradient(160deg, rgba(19, 19, 22, 0.84) 0%, rgba(36, 36, 43, 0.84) 100%),
+    linear-gradient(160deg, rgba(92, 15, 46, 0.84) 0%, rgba(92, 15, 46, 0.84) 100%),
     url('https://visit.sofieluthor.com/images/banner.jpeg') 50% 30% / cover no-repeat #131316;
   color: #fff;
   text-align: center;
@@ -1129,7 +1142,7 @@ button {
 }
 
 .article__media {
-  aspect-ratio: 16 / 9;
+  aspect-ratio: 4 / 3;
   overflow: hidden;
 }
 
@@ -1587,7 +1600,7 @@ button {
 
 .page-hero {
   background:
-    linear-gradient(160deg, rgba(19, 19, 22, 0.84) 0%, rgba(36, 36, 43, 0.84) 100%),
+    linear-gradient(160deg, rgba(92, 15, 46, 0.84) 0%, rgba(92, 15, 46, 0.84) 100%),
     url('https://visit.sofieluthor.com/images/banner.jpeg') 50% 30% / cover no-repeat #131316;
   color: #fff;
   text-align: center;
