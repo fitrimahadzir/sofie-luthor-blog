@@ -5,7 +5,7 @@ import type { Post, PostsPage, WpPost, WpTerm } from '../types/post'
 const POSTS_PER_PAGE = 6
 
 /** Fallback used when the WordPress API is not connected yet. */
-function getDemoPosts(category?: string, page = 1): PostsPage {
+function getDemoPosts(category?: string, page = 1, search?: string): PostsPage {
   let filtered = [...demoPosts].sort(
     (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime(),
   )
@@ -13,6 +13,15 @@ function getDemoPosts(category?: string, page = 1): PostsPage {
   if (category && category !== 'all') {
     filtered = filtered.filter((p) =>
       p.categories.map((c) => c.toLowerCase()).includes(category.toLowerCase()),
+    )
+  }
+
+  if (search) {
+    const q = search.toLowerCase()
+    filtered = filtered.filter((p) =>
+      `${p.title} ${stripHtml(p.content)} ${p.categories.join(' ')}`
+        .toLowerCase()
+        .includes(q),
     )
   }
 
@@ -172,13 +181,13 @@ export const wpService = {
     search?: string,
   ): Promise<PostsPage> {
     if (!siteConfig.useWpApi) {
-      return getDemoPosts(category, page)
+      return getDemoPosts(category, page, search)
     }
     try {
       return await fetchWpPosts(category, page, search)
     } catch (error) {
       console.warn('[wp] Failed to load posts, using demo data.', error)
-      return getDemoPosts(category, page)
+      return getDemoPosts(category, page, search)
     }
   },
 

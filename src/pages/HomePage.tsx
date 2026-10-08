@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom'
 import PostCard from '../components/PostCard'
 import Newsletter from '../components/Newsletter'
 import SectionHeading from '../components/SectionHeading'
+import SidebarLayout from '../components/SidebarLayout'
 import { usePosts } from '../hooks/usePosts'
 import { siteConfig } from '../config/site'
 
@@ -83,25 +84,27 @@ export default function HomePage() {
 
       <section className="section section--soft">
         <div className="container">
-          <SectionHeading
-            title="APA YANG TERBARU DI BLOG"
-            script="artikel terkini"
-            description="Kisah, fikiran dan idea terbaru saya — ditulis khas untuk anda."
-          />
+          <SidebarLayout>
+            <SectionHeading
+              title="APA YANG TERBARU DI BLOG"
+              script="artikel terkini"
+              description="Kisah, fikiran dan idea terbaru saya — ditulis khas untuk anda."
+            />
 
-          {loading ? <div className="loading">Memuatkan artikel&hellip;</div> : null}
+            {loading ? <div className="loading">Memuatkan artikel&hellip;</div> : null}
 
-          <div className="post-grid">
-            {posts.slice(0, 3).map((post) => (
-              <PostCard key={post.id} post={post} />
-            ))}
-          </div>
+            <div className="post-grid">
+              {posts.slice(0, 3).map((post) => (
+                <PostCard key={post.id} post={post} />
+              ))}
+            </div>
 
-          <div style={{ textAlign: 'center', marginTop: 48 }}>
-            <Link to="/blog" className="button button--outline">
-              Lihat semua artikel
-            </Link>
-          </div>
+            <div style={{ textAlign: 'center', marginTop: 48 }}>
+              <Link to="/blog" className="button button--outline">
+                Lihat semua artikel
+              </Link>
+            </div>
+          </SidebarLayout>
         </div>
       </section>
 

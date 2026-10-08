@@ -9,7 +9,7 @@ interface UsePostsState {
   error: string | null
 }
 
-export function usePosts(category = 'all', page = 1) {
+export function usePosts(category = 'all', page = 1, search?: string) {
   const [state, setState] = useState<UsePostsState>({
     posts: [],
     totalPages: 1,
@@ -22,7 +22,7 @@ export function usePosts(category = 'all', page = 1) {
     setState((s) => ({ ...s, loading: true, error: null }))
 
     wpService
-      .getPosts(category, page)
+      .getPosts(category, page, search)
       .then((result: PostsPage) => {
         if (cancelled) return
         setState({
@@ -40,7 +40,7 @@ export function usePosts(category = 'all', page = 1) {
     return () => {
       cancelled = true
     }
-  }, [category, page])
+  }, [category, page, search])
 
   return state
 }

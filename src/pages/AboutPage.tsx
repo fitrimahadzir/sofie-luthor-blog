@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import Newsletter from '../components/Newsletter'
 import SectionHeading from '../components/SectionHeading'
+import SidebarLayout from '../components/SidebarLayout'
 import { siteConfig } from '../config/site'
 
 const JOURNEY = [
@@ -82,7 +83,8 @@ export default function AboutPage() {
 
       <section className="section section--soft">
         <div className="container">
-          <div className="about-profile">
+          <SidebarLayout>
+            <div className="about-profile">
             <div className="about-profile__media">
               <img src="/images/image-penulis.webp" alt={siteConfig.name} />
             </div>
@@ -256,6 +258,7 @@ export default function AboutPage() {
               Baca blog saya
             </Link>
           </div>
+          </SidebarLayout>
         </div>
       </section>
 

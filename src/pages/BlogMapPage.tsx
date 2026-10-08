@@ -1,4 +1,5 @@
 import SectionHeading from '../components/SectionHeading'
+import SidebarLayout from '../components/SidebarLayout'
 import { blogMap } from '../data/blogMap'
 
 export default function BlogMapPage() {
@@ -13,6 +14,7 @@ export default function BlogMapPage() {
 
       <section className="section">
         <div className="container">
+          <SidebarLayout>
           <SectionHeading
             title="CARI TOPIK, BACA, DAN TEROKAI"
             description="Senarai lengkap topik dan artikel mengikut kategori. Pilih mana-mana tajuk untuk terus membaca di blog asal sofinahlamudin.com."
@@ -38,6 +40,7 @@ export default function BlogMapPage() {
               </div>
             ))}
           </div>
+          </SidebarLayout>
         </div>
       </section>
     </>

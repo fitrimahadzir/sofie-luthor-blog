@@ -1,5 +1,6 @@
 import { useState, type FormEvent } from 'react'
 import SectionHeading from '../components/SectionHeading'
+import SidebarLayout from '../components/SidebarLayout'
 
 const SOCIALS = [
   {
@@ -91,6 +92,7 @@ export default function ContactPage() {
 
       <section className="section section--soft">
         <div className="container">
+          <SidebarLayout>
           <div className="linkbio">
             <a href={LINK_IN_BIO} target="_blank" rel="noopener noreferrer">
               Link In Bio : {LINK_IN_BIO}
@@ -211,6 +213,7 @@ export default function ContactPage() {
               &middot; @sofieluthor
             </div>
           </div>
+          </SidebarLayout>
         </div>
       </section>
     </>

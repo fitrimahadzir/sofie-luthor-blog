@@ -1,6 +1,7 @@
 import { Link, useParams } from 'react-router-dom'
 import { usePost, usePosts } from '../hooks/usePosts'
 import PostCard from '../components/PostCard'
+import SidebarLayout from '../components/SidebarLayout'
 import { siteConfig } from '../config/site'
 import type { Post } from '../types/post'
 
@@ -15,20 +16,18 @@ function formatDate(date: string): string {
 function AuthorBox({ post }: { post: Post }) {
   if (!post.author) return null
   return (
-    <div className="container">
-      <div className="author-box">
-        {post.authorAvatar && (
-          <div className="author-box__avatar">
-            <img src={post.authorAvatar} alt={post.author} />
-          </div>
-        )}
-        <div>
-          <h4>{post.author}</h4>
-          <p>
-            {post.authorBio ??
-              `Penulis di ${siteConfig.name}.`}
-          </p>
+    <div className="author-box">
+      {post.authorAvatar && (
+        <div className="author-box__avatar">
+          <img src={post.authorAvatar} alt={post.author} />
         </div>
+      )}
+      <div>
+        <h4>{post.author}</h4>
+        <p>
+          {post.authorBio ??
+            `Penulis di ${siteConfig.name}.`}
+        </p>
       </div>
     </div>
   )
@@ -75,6 +74,7 @@ export default function PostPage() {
 
       <section className="section" style={{ paddingTop: 0 }}>
         <div className="container">
+          <SidebarLayout>
           <article className="article">
             {post.image && (
               <div className="article__media">
@@ -120,6 +120,7 @@ export default function PostPage() {
               &larr; Kembali ke blog
             </Link>
           </div>
+          </SidebarLayout>
         </div>
       </section>
     </>

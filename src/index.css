@@ -1679,3 +1679,241 @@ button {
 .mt-0 {
   margin-top: 0;
 }
+
+/* ---------- Sidebar ---------- */
+
+.sidebar-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 320px;
+  gap: 48px;
+  align-items: start;
+}
+
+.sidebar-layout__main {
+  min-width: 0;
+}
+
+.sidebar-layout__side {
+  position: sticky;
+  top: 96px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+@media (max-width: 1024px) {
+  .sidebar-layout {
+    grid-template-columns: 1fr;
+  }
+  .sidebar-layout__side {
+    position: static;
+  }
+}
+
+.widget {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 24px;
+}
+
+.widget__title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin: 0 0 16px;
+  padding-bottom: 12px;
+  border-bottom: 2px solid var(--accent-soft);
+}
+
+.widget__title::before {
+  content: '\2665';
+  color: var(--accent);
+}
+
+.widget-search {
+  display: flex;
+  gap: 8px;
+}
+
+.widget-search input {
+  flex: 1;
+  min-width: 0;
+  padding: 10px 16px;
+  border: 1px solid var(--border);
+  border-radius: 50px;
+  background: var(--bg-soft);
+  font: inherit;
+  font-size: 15px;
+}
+
+.widget-search input:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-soft);
+}
+
+.widget-search .button {
+  padding: 10px 14px;
+  border-radius: 50px;
+}
+
+.widget-stats {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.widget-stats__count {
+  font-size: 1.7rem;
+  font-weight: 800;
+  color: var(--accent);
+  line-height: 1.2;
+}
+
+.widget-stats__label {
+  font-size: 13px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.widget-bio img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: var(--radius);
+  margin-bottom: 14px;
+}
+
+.widget-bio p {
+  font-size: 15px;
+  line-height: 1.7;
+  margin-bottom: 12px;
+}
+
+.widget-more {
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.widget-social {
+  display: grid;
+  gap: 10px;
+}
+
+.widget-social a {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  padding: 11px 14px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--bg-soft);
+  color: var(--ink);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.widget-social a:hover {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+
+.widget-contact {
+  display: grid;
+  gap: 10px;
+}
+
+.widget-contact a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text);
+  overflow-wrap: anywhere;
+}
+
+.widget-contact a i {
+  color: var(--accent);
+}
+
+.widget-contact a:hover {
+  color: var(--accent);
+}
+
+.widget-links {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 2px;
+}
+
+.widget-links li + li {
+  border-top: 1px dashed var(--border);
+}
+
+.widget-links a {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 0;
+  font-size: 15px;
+  color: var(--text);
+  transition: color 0.2s ease;
+}
+
+.widget-links a::after {
+  content: '\2192';
+  color: var(--accent);
+}
+
+.widget-links a:hover {
+  color: var(--accent);
+}
+
+.widget-archive {
+  display: grid;
+  gap: 4px;
+}
+
+.widget-archive__year {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--ink);
+  margin-top: 12px;
+  padding-bottom: 6px;
+  border-bottom: 1px dashed var(--border);
+}
+
+.widget-archive__year:first-child {
+  margin-top: 0;
+}
+
+.widget-archive__month {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 5px 0;
+  font-size: 15px;
+  color: var(--text);
+}
