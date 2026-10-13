@@ -6,11 +6,17 @@ import Sidebar from './Sidebar'
  * Remove the sidebar from a page by replacing <SidebarLayout>…</SidebarLayout>
  * with its children directly.
  */
-export default function SidebarLayout({ children }: { children: ReactNode }) {
+export default function SidebarLayout({
+  children,
+  sideClassName,
+}: {
+  children: ReactNode
+  sideClassName?: string
+}) {
   return (
     <div className="sidebar-layout">
       <div className="sidebar-layout__main">{children}</div>
-      <aside className="sidebar-layout__side">
+      <aside className={`sidebar-layout__side${sideClassName ? ` ${sideClassName}` : ''}`}>
         <Sidebar />
       </aside>
     </div>

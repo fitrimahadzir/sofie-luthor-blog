@@ -1104,7 +1104,7 @@ button {
     url('https://visit.sofieluthor.com/images/banner.jpeg') 50% 30% / cover no-repeat #131316;
   color: #fff;
   text-align: center;
-  padding: 80px 0 70px;
+  padding: 80px 0 116px;
 }
 
 .post-hero h1 {
@@ -1699,6 +1699,10 @@ button {
   display: flex;
   flex-direction: column;
   gap: 24px;
+}
+
+.sidebar-layout__side--top {
+  padding-top: 72px;
 }
 
 @media (max-width: 1024px) {

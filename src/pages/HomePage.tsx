@@ -94,7 +94,7 @@ export default function HomePage() {
             {loading ? <div className="loading">Memuatkan artikel&hellip;</div> : null}
 
             <div className="post-grid">
-              {posts.slice(0, 3).map((post) => (
+              {posts.slice(0, 4).map((post) => (
                 <PostCard key={post.id} post={post} />
               ))}
             </div>

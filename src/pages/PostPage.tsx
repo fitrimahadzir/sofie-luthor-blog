@@ -74,7 +74,7 @@ export default function PostPage() {
 
       <section className="section" style={{ paddingTop: 0 }}>
         <div className="container">
-          <SidebarLayout>
+          <SidebarLayout sideClassName="sidebar-layout__side--top">
           <article className="article">
             {post.image && (
               <div className="article__media">
