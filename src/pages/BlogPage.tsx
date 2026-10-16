@@ -6,20 +6,39 @@ import SidebarLayout from '../components/SidebarLayout'
 import { useCategories, usePosts, usePostsPerPage } from '../hooks/usePosts'
 import { siteConfig } from '../config/site'
 
+const MONTH_NAMES = [
+  'Januari',
+  'Februari',
+  'Mac',
+  'April',
+  'Mei',
+  'Jun',
+  'Julai',
+  'Ogos',
+  'September',
+  'Oktober',
+  'November',
+  'Disember',
+]
+
 export default function BlogPage() {
   const [searchParams, setSearchParams] = useSearchParams()
   const activeCategory = searchParams.get('category') ?? 'all'
   const activeQuery = searchParams.get('q') ?? ''
   const page = Number(searchParams.get('page') ?? '1')
+  const archiveYear = searchParams.get('year') ? Number(searchParams.get('year')) : undefined
+  const archiveMonth = searchParams.get('month') ? Number(searchParams.get('month')) : undefined
 
   const categories = useCategories()
   const perPage = usePostsPerPage()
-  const { posts, totalPages, loading, error } = usePosts(
-    activeCategory,
+  const { posts, totalPages, loading, error } = usePosts({
+    category: activeCategory,
     page,
-    activeQuery,
+    search: activeQuery,
     perPage,
-  )
+    year: archiveYear,
+    month: archiveMonth,
+  })
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' })
@@ -33,14 +52,18 @@ export default function BlogPage() {
       const params: Record<string, string> = { page: '1' }
       if (activeCategory !== 'all') params.category = activeCategory
       if (activeQuery) params.q = activeQuery
+      if (archiveYear) params.year = String(archiveYear)
+      if (archiveMonth) params.month = String(archiveMonth)
       setSearchParams(params)
     }
-  }, [perPage, page, activeCategory, activeQuery, setSearchParams])
+  }, [perPage, page, activeCategory, activeQuery, archiveYear, archiveMonth, setSearchParams])
 
   function buildParams(next: Record<string, string> = {}) {
     const params: Record<string, string> = { ...next }
     if (activeCategory !== 'all' && !params.category) params.category = activeCategory
     if (activeQuery && !params.q) params.q = activeQuery
+    if (archiveYear && !params.year) params.year = String(archiveYear)
+    if (archiveMonth && !params.month) params.month = String(archiveMonth)
     return params
   }
 
@@ -55,6 +78,14 @@ export default function BlogPage() {
   function clearSearch() {
     const params = buildParams()
     delete params.q
+    setSearchParams(params)
+  }
+
+  function clearArchive() {
+    const params = buildParams()
+    delete params.year
+    delete params.month
+    delete params.page
     setSearchParams(params)
   }
 
@@ -88,10 +119,25 @@ export default function BlogPage() {
                   Carian: &ldquo;{activeQuery}&rdquo; &times;
                 </button>
               )}
+              {archiveYear && (
+                <button
+                  type="button"
+                  className="chip is-active"
+                  onClick={clearArchive}
+                >
+                  Arkib:{' '}
+                  {archiveMonth
+                    ? `${[1,2,3,4,5,6,7,8,9,10,11,12].includes(archiveMonth) ? ['Januari','Februari','Mac','April','Mei','Jun','Julai','Ogos','September','Oktober','November','Disember'][archiveMonth - 1] : archiveMonth} ${archiveYear}`
+                    : `${archiveYear}`}{' '}
+                  &times;
+                </button>
+              )}
               <button
                 type="button"
-                className={`chip${activeCategory === 'all' ? ' is-active' : ''}`}
-                onClick={() => setCategory('all')}
+                className={`chip${activeCategory === 'all' && !activeQuery && !archiveYear ? ' is-active' : ''}`}
+                onClick={() => {
+                  setSearchParams(buildParams({}))
+                }}
               >
                 Semua
               </button>
@@ -119,6 +165,10 @@ export default function BlogPage() {
               <div className="loading">
                 {activeQuery
                   ? `Tiada artikel yang sepadan dengan carian "${activeQuery}".`
+                  : archiveYear
+                  ? archiveMonth
+                    ? `Tiada artikel untuk ${MONTH_NAMES[archiveMonth - 1]} ${archiveYear}.`
+                    : `Tiada artikel untuk ${archiveYear}.`
                   : 'Tiada artikel dalam kategori ini buat masa ini.'}
               </div>
             ) : (

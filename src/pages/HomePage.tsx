@@ -7,7 +7,7 @@ import { usePosts } from '../hooks/usePosts'
 import { siteConfig } from '../config/site'
 
 export default function HomePage() {
-  const { posts, loading } = usePosts('all', 1)
+  const { posts, loading } = usePosts({ category: 'all', page: 1 })
 
   return (
     <>

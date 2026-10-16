@@ -38,7 +38,7 @@ export default function PostPage() {
   const { post, loading, error } = usePost(slug)
 
   // Related posts: same first category, excluding current post
-  const related = usePosts(post?.categories[0] ?? 'all', 1)
+  const related = usePosts({ category: post?.categories[0] ?? 'all', page: 1 })
   const relatedPosts = related.posts
     .filter((p) => p.id !== post?.id)
     .slice(0, 3)

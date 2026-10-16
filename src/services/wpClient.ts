@@ -1,19 +1,28 @@
 import { siteConfig } from '../config/site'
 import { demoAuthors, demoPosts } from '../data/demoPosts'
-import type { Post, PostsPage, WpPost, WpTerm } from '../types/post'
+import type {
+  ArchivePeriod,
+  Post,
+  PostQuery,
+  PostsPage,
+  WpPost,
+  WpTerm,
+} from '../types/post'
 
 /** Posts per page on small screens (mobile & tablet). */
 export const POSTS_PER_PAGE = 6
 /** Posts per page on desktop (>= 1024px). */
 export const POSTS_PER_PAGE_DESKTOP = 12
 
+/** Safety cap so the archive fetch can never loop forever. */
+const ARCHIVE_MAX_PAGES = 20
+
 /** Fallback used when the WordPress API is not connected yet. */
-function getDemoPosts(
-  category?: string,
-  page = 1,
-  search?: string,
-  perPage = POSTS_PER_PAGE,
-): PostsPage {
+function getDemoPosts(query: PostQuery = {}): PostsPage {
+  const { category, search, year, month } = query
+  const page = query.page ?? 1
+  const perPage = query.perPage ?? POSTS_PER_PAGE
+
   let filtered = [...demoPosts].sort(
     (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime(),
   )
@@ -31,6 +40,15 @@ function getDemoPosts(
         .toLowerCase()
         .includes(q),
     )
+  }
+
+  if (year) {
+    filtered = filtered.filter((p) => {
+      const date = new Date(p.date)
+      if (date.getFullYear() !== year) return false
+      if (month && date.getMonth() + 1 !== month) return false
+      return true
+    })
   }
 
   const total = filtered.length
@@ -103,12 +121,57 @@ async function request(path: string): Promise<Response> {
   return response
 }
 
-async function fetchWpPosts(
-  category?: string,
-  page = 1,
-  search?: string,
-  perPage = POSTS_PER_PAGE,
-): Promise<PostsPage> {
+/** Formats a Date as a WordPress local-time ISO string (no timezone). */
+function toWpDate(date: Date): string {
+  const pad = (value: number) => String(value).padStart(2, '0')
+  return (
+    `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())}` +
+    `T${pad(date.getHours())}:${pad(date.getMinutes())}:${pad(date.getSeconds())}`
+  )
+}
+
+/**
+ * Builds an exclusive `after`/`before` range for a year (or a single month).
+ * WordPress treats `after`/`before` as strict, so we nudge the boundaries by
+ * one second to keep posts published at midnight inside the range.
+ */
+function archiveRange(year: number, month?: number): { after: string; before: string } {
+  const start = month ? new Date(year, month - 1, 1) : new Date(year, 0, 1)
+  const end = month ? new Date(year, month, 1) : new Date(year + 1, 0, 1)
+  return {
+    after: toWpDate(new Date(start.getTime() - 1000)),
+    before: toWpDate(end),
+  }
+}
+
+/** Groups post dates into years/months with counts. */
+function computeArchive(dates: string[]): ArchivePeriod[] {
+  const byYear = new Map<number, Map<number, number>>()
+  for (const iso of dates) {
+    const date = new Date(iso)
+    if (Number.isNaN(date.getTime())) continue
+    const year = date.getFullYear()
+    const month = date.getMonth()
+    if (!byYear.has(year)) byYear.set(year, new Map())
+    const months = byYear.get(year)!
+    months.set(month, (months.get(month) ?? 0) + 1)
+  }
+  return [...byYear.entries()]
+    .sort((a, b) => b[0] - a[0])
+    .map(([year, months]) => ({
+      year,
+      total: [...months.values()].reduce((sum, count) => sum + count, 0),
+      months: [...months.entries()]
+        .sort((a, b) => b[0] - a[0])
+        .map(([month, count]) => ({ month, count })),
+    }))
+}
+
+async function fetchWpPosts(query: PostQuery = {}): Promise<PostsPage> {
+  const { category, search, year, month } = query
+  const page = query.page ?? 1
+  const perPage = query.perPage ?? POSTS_PER_PAGE
+
   const params = new URLSearchParams({
     _embed: '1',
     per_page: String(perPage),
@@ -124,13 +187,37 @@ async function fetchWpPosts(
   if (search) {
     params.set('search', search)
   }
+  if (year) {
+    const range = archiveRange(year, month)
+    params.set('after', range.after)
+    params.set('before', range.before)
+  }
 
   const response = await request(`/wp/v2/posts?${params.toString()}`)
   const totalPages = Number(response.headers.get('X-WP-TotalPages')) || 1
+  const total = Number(response.headers.get('X-WP-Total')) || 0
   const data = (await response.json()) as WpPost[]
   const posts = data.map(mapWpPost)
 
-  return { posts, totalPages, total: posts.length }
+  return { posts, totalPages, total }
+}
+
+/** Fetches every post's date (paginated) and groups them into an archive. */
+async function fetchWpArchive(): Promise<ArchivePeriod[]> {
+  const dates: string[] = []
+  let page = 1
+  let totalPages = 1
+  do {
+    const response = await request(
+      `/wp/v2/posts?per_page=100&page=${page}&_fields=date&orderby=date&order=desc`,
+    )
+    totalPages = Number(response.headers.get('X-WP-TotalPages')) || 1
+    const data = (await response.json()) as Array<{ date: string }>
+    dates.push(...data.map((item) => item.date))
+    page += 1
+  } while (page <= totalPages && page <= ARCHIVE_MAX_PAGES)
+
+  return computeArchive(dates)
 }
 
 async function fetchWpPost(slug: string): Promise<Post | undefined> {
@@ -181,23 +268,18 @@ export const wpService = {
 
   /**
    * Returns a page of posts.
-   * category can be a category name ('Dance Styles'), the string 'all',
-   * or undefined. With the API connected it is passed through as a search.
+   * `category` can be a category name ('Dance Styles'), the string 'all',
+   * or undefined. `year`/`month` filter by the archive period.
    */
-  async getPosts(
-    category?: string,
-    page = 1,
-    search?: string,
-    perPage = POSTS_PER_PAGE,
-  ): Promise<PostsPage> {
+  async getPosts(query: PostQuery = {}): Promise<PostsPage> {
     if (!siteConfig.useWpApi) {
-      return getDemoPosts(category, page, search, perPage)
+      return getDemoPosts(query)
     }
     try {
-      return await fetchWpPosts(category, page, search, perPage)
+      return await fetchWpPosts(query)
     } catch (error) {
       console.warn('[wp] Failed to load posts, using demo data.', error)
-      return getDemoPosts(category, page, search, perPage)
+      return getDemoPosts(query)
     }
   },
 
@@ -214,27 +296,21 @@ export const wpService = {
     }
   },
 
-  /** Search helper kept for future use / header search. */
-  async searchPosts(query: string, page = 1, perPage = POSTS_PER_PAGE): Promise<PostsPage> {
+  /** Returns posts grouped by year/month for the archive widget. */
+  async getArchive(): Promise<ArchivePeriod[]> {
     if (!siteConfig.useWpApi) {
-      const q = query.toLowerCase()
-      const filtered = demoPosts.filter((p) =>
-        `${p.title} ${stripHtml(p.content)} ${p.categories.join(' ')}`
-          .toLowerCase()
-          .includes(q),
-      )
-      const start = (page - 1) * perPage
-      return {
-        posts: filtered.slice(start, start + perPage),
-        totalPages: Math.max(1, Math.ceil(filtered.length / perPage)),
-        total: filtered.length,
-      }
+      return computeArchive(demoPosts.map((p) => p.date))
     }
     try {
-      return await fetchWpPosts(undefined, page, query, perPage)
+      return await fetchWpArchive()
     } catch (error) {
-      console.warn('[wp] Search failed, using demo data.', error)
-      return { posts: [], totalPages: 1, total: 0 }
+      console.warn('[wp] Failed to load archive, using demo data.', error)
+      return computeArchive(demoPosts.map((p) => p.date))
     }
+  },
+
+  /** Search helper kept for future use / header search. */
+  async searchPosts(query: string, page = 1, perPage = POSTS_PER_PAGE): Promise<PostsPage> {
+    return this.getPosts({ search: query, page, perPage })
   },
 }

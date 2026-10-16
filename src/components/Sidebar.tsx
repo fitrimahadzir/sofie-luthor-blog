@@ -1,7 +1,7 @@
-import { useState, type FormEvent } from 'react'
+﻿import { useState, type FormEvent } from 'react'
 import { Link, useNavigate, useSearchParams } from 'react-router-dom'
-import { demoPosts } from '../data/demoPosts'
 import { siteConfig } from '../config/site'
+import { useArchive } from '../hooks/usePosts'
 
 const SOCIALS = [
   { icon: 'icon-play', label: 'Subs. di Youtube', url: 'https://www.youtube.com/sofinahlamudin' },
@@ -48,32 +48,7 @@ const MONTH_NAMES = [
   'Disember',
 ]
 
-type ArchiveYear = {
-  year: number
-  total: number
-  months: Array<{ month: number; count: number }>
-}
 
-function buildArchive(): ArchiveYear[] {
-  const byYear = new Map<number, Map<number, number>>()
-  for (const post of demoPosts) {
-    const date = new Date(post.date)
-    const year = date.getFullYear()
-    const month = date.getMonth()
-    if (!byYear.has(year)) byYear.set(year, new Map())
-    const months = byYear.get(year)!
-    months.set(month, (months.get(month) ?? 0) + 1)
-  }
-  return [...byYear.entries()]
-    .sort((a, b) => b[0] - a[0])
-    .map(([year, months]) => ({
-      year,
-      total: [...months.values()].reduce((sum, count) => sum + count, 0),
-      months: [...months.entries()].sort((a, b) => b[0] - a[0]).map(([month, count]) => ({ month, count })),
-    }))
-}
-
-const ARCHIVE = buildArchive()
 
 function WidgetTitle({ children }: { children: string }) {
   return <h2 className="widget__title">{children}</h2>
@@ -83,6 +58,7 @@ export default function Sidebar() {
   const [searchParams] = useSearchParams()
   const navigate = useNavigate()
   const [term, setTerm] = useState(searchParams.get('q') ?? '')
+  const archive = useArchive()
 
   function handleSearch(event: FormEvent) {
     event.preventDefault()
@@ -183,20 +159,31 @@ export default function Sidebar() {
       <div className="widget">
         <WidgetTitle>Arkib</WidgetTitle>
         <div className="widget-archive">
-          {/* TODO: pautkan setiap baris ke arkib WordPress apabila sedia */}
-          {ARCHIVE.map((entry) => (
+          {archive.length === 0 && (
+            <div style={{ fontSize: '15px', color: 'var(--muted)' }}>
+              Tiada arkib buat masa ini.
+            </div>
+          )}
+          {archive.map((entry) => (
             <div key={entry.year}>
-              <div className="widget-archive__year">
+              <Link
+                to={`/blog?year=${entry.year}`}
+                className="widget-archive__year"
+                style={{ textDecoration: 'none' }}
+              >
                 <span>{entry.year}</span>
                 <span>({entry.total})</span>
-              </div>
+              </Link>
               {entry.months.map((item) => (
-                <div className="widget-archive__month" key={item.month}>
-                  <span>
-                    {MONTH_NAMES[item.month]} {entry.year}
-                  </span>
+                <Link
+                  to={`/blog?year=${entry.year}&month=${item.month + 1}`}
+                  className="widget-archive__month"
+                  key={item.month}
+                  style={{ textDecoration: 'none', color: 'inherit' }}
+                >
+                  <span>{MONTH_NAMES[item.month]} {entry.year}</span>
                   <span>({item.count})</span>
-                </div>
+                </Link>
               ))}
             </div>
           ))}

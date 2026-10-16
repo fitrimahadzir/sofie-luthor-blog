@@ -4,7 +4,7 @@ import {
   POSTS_PER_PAGE_DESKTOP,
   wpService,
 } from '../services/wpClient'
-import type { Post, PostsPage } from '../types/post'
+import type { ArchivePeriod, Post, PostQuery, PostsPage } from '../types/post'
 
 const DESKTOP_MEDIA_QUERY = '(min-width: 1024px)'
 
@@ -35,12 +35,8 @@ interface UsePostsState {
   error: string | null
 }
 
-export function usePosts(
-  category = 'all',
-  page = 1,
-  search?: string,
-  perPage = POSTS_PER_PAGE,
-) {
+export function usePosts(query: PostQuery = {}) {
+  const { category, page, search, perPage, year, month } = query
   const [state, setState] = useState<UsePostsState>({
     posts: [],
     totalPages: 1,
@@ -53,7 +49,7 @@ export function usePosts(
     setState((s) => ({ ...s, loading: true, error: null }))
 
     wpService
-      .getPosts(category, page, search, perPage)
+      .getPosts({ category, page, search, perPage, year, month })
       .then((result: PostsPage) => {
         if (cancelled) return
         setState({
@@ -71,7 +67,7 @@ export function usePosts(
     return () => {
       cancelled = true
     }
-  }, [category, page, search, perPage])
+  }, [category, page, search, perPage, year, month])
 
   return state
 }
@@ -129,4 +125,26 @@ export function useCategories() {
   }, [])
 
   return categories
+}
+
+/** Loads the archive groups (year/month counts) for the sidebar. */
+export function useArchive(): ArchivePeriod[] {
+  const [archive, setArchive] = useState<ArchivePeriod[]>([])
+
+  useEffect(() => {
+    let cancelled = false
+    wpService
+      .getArchive()
+      .then((data) => {
+        if (!cancelled) setArchive(data)
+      })
+      .catch(() => {
+        /* ignore */
+      })
+    return () => {
+      cancelled = true
+    }
+  }, [])
+
+  return archive
 }

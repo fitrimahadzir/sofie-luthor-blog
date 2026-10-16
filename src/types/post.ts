@@ -59,3 +59,29 @@ export interface PostsPage {
   totalPages: number
   total: number
 }
+
+/** Query options for the blog listing (all optional). */
+export interface PostQuery {
+  category?: string
+  page?: number
+  search?: string
+  perPage?: number
+  /** Filter by publication year, e.g. 2026. */
+  year?: number
+  /** Filter by publication month (1-12). Requires `year`. */
+  month?: number
+}
+
+/** One month inside an archive year. */
+export interface ArchiveMonth {
+  /** Zero-based month index (0 = January). */
+  month: number
+  count: number
+}
+
+/** Posts grouped by year for the sidebar archive widget. */
+export interface ArchivePeriod {
+  year: number
+  total: number
+  months: ArchiveMonth[]
+}
