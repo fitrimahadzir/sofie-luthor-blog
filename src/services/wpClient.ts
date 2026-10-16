@@ -2,10 +2,18 @@ import { siteConfig } from '../config/site'
 import { demoAuthors, demoPosts } from '../data/demoPosts'
 import type { Post, PostsPage, WpPost, WpTerm } from '../types/post'
 
-const POSTS_PER_PAGE = 6
+/** Posts per page on small screens (mobile & tablet). */
+export const POSTS_PER_PAGE = 6
+/** Posts per page on desktop (>= 1024px). */
+export const POSTS_PER_PAGE_DESKTOP = 12
 
 /** Fallback used when the WordPress API is not connected yet. */
-function getDemoPosts(category?: string, page = 1, search?: string): PostsPage {
+function getDemoPosts(
+  category?: string,
+  page = 1,
+  search?: string,
+  perPage = POSTS_PER_PAGE,
+): PostsPage {
   let filtered = [...demoPosts].sort(
     (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime(),
   )
@@ -26,9 +34,9 @@ function getDemoPosts(category?: string, page = 1, search?: string): PostsPage {
   }
 
   const total = filtered.length
-  const totalPages = Math.max(1, Math.ceil(total / POSTS_PER_PAGE))
-  const start = (page - 1) * POSTS_PER_PAGE
-  const posts = filtered.slice(start, start + POSTS_PER_PAGE).map((post) => {
+  const totalPages = Math.max(1, Math.ceil(total / perPage))
+  const start = (page - 1) * perPage
+  const posts = filtered.slice(start, start + perPage).map((post) => {
     const author = demoAuthors[post.author]
     return {
       ...post,
@@ -99,10 +107,11 @@ async function fetchWpPosts(
   category?: string,
   page = 1,
   search?: string,
+  perPage = POSTS_PER_PAGE,
 ): Promise<PostsPage> {
   const params = new URLSearchParams({
     _embed: '1',
-    per_page: String(POSTS_PER_PAGE),
+    per_page: String(perPage),
     page: String(page),
   })
   if (category && category !== 'all') {
@@ -179,15 +188,16 @@ export const wpService = {
     category?: string,
     page = 1,
     search?: string,
+    perPage = POSTS_PER_PAGE,
   ): Promise<PostsPage> {
     if (!siteConfig.useWpApi) {
-      return getDemoPosts(category, page, search)
+      return getDemoPosts(category, page, search, perPage)
     }
     try {
-      return await fetchWpPosts(category, page, search)
+      return await fetchWpPosts(category, page, search, perPage)
     } catch (error) {
       console.warn('[wp] Failed to load posts, using demo data.', error)
-      return getDemoPosts(category, page, search)
+      return getDemoPosts(category, page, search, perPage)
     }
   },
 
@@ -205,7 +215,7 @@ export const wpService = {
   },
 
   /** Search helper kept for future use / header search. */
-  async searchPosts(query: string, page = 1): Promise<PostsPage> {
+  async searchPosts(query: string, page = 1, perPage = POSTS_PER_PAGE): Promise<PostsPage> {
     if (!siteConfig.useWpApi) {
       const q = query.toLowerCase()
       const filtered = demoPosts.filter((p) =>
@@ -213,15 +223,15 @@ export const wpService = {
           .toLowerCase()
           .includes(q),
       )
-      const start = (page - 1) * POSTS_PER_PAGE
+      const start = (page - 1) * perPage
       return {
-        posts: filtered.slice(start, start + POSTS_PER_PAGE),
-        totalPages: Math.max(1, Math.ceil(filtered.length / POSTS_PER_PAGE)),
+        posts: filtered.slice(start, start + perPage),
+        totalPages: Math.max(1, Math.ceil(filtered.length / perPage)),
         total: filtered.length,
       }
     }
     try {
-      return await fetchWpPosts(undefined, page, query)
+      return await fetchWpPosts(undefined, page, query, perPage)
     } catch (error) {
       console.warn('[wp] Search failed, using demo data.', error)
       return { posts: [], totalPages: 1, total: 0 }

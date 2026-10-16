@@ -1,6 +1,32 @@
 import { useCallback, useEffect, useState } from 'react'
-import { wpService } from '../services/wpClient'
+import {
+  POSTS_PER_PAGE,
+  POSTS_PER_PAGE_DESKTOP,
+  wpService,
+} from '../services/wpClient'
 import type { Post, PostsPage } from '../types/post'
+
+const DESKTOP_MEDIA_QUERY = '(min-width: 1024px)'
+
+/** Returns the number of posts to load per page for the current viewport. */
+export function usePostsPerPage(): number {
+  const [perPage, setPerPage] = useState(() =>
+    typeof window !== 'undefined' && window.matchMedia(DESKTOP_MEDIA_QUERY).matches
+      ? POSTS_PER_PAGE_DESKTOP
+      : POSTS_PER_PAGE,
+  )
+
+  useEffect(() => {
+    const mql = window.matchMedia(DESKTOP_MEDIA_QUERY)
+    const sync = () =>
+      setPerPage(mql.matches ? POSTS_PER_PAGE_DESKTOP : POSTS_PER_PAGE)
+    sync()
+    mql.addEventListener('change', sync)
+    return () => mql.removeEventListener('change', sync)
+  }, [])
+
+  return perPage
+}
 
 interface UsePostsState {
   posts: Post[]
@@ -9,7 +35,12 @@ interface UsePostsState {
   error: string | null
 }
 
-export function usePosts(category = 'all', page = 1, search?: string) {
+export function usePosts(
+  category = 'all',
+  page = 1,
+  search?: string,
+  perPage = POSTS_PER_PAGE,
+) {
   const [state, setState] = useState<UsePostsState>({
     posts: [],
     totalPages: 1,
@@ -22,7 +53,7 @@ export function usePosts(category = 'all', page = 1, search?: string) {
     setState((s) => ({ ...s, loading: true, error: null }))
 
     wpService
-      .getPosts(category, page, search)
+      .getPosts(category, page, search, perPage)
       .then((result: PostsPage) => {
         if (cancelled) return
         setState({
@@ -40,7 +71,7 @@ export function usePosts(category = 'all', page = 1, search?: string) {
     return () => {
       cancelled = true
     }
-  }, [category, page, search])
+  }, [category, page, search, perPage])
 
   return state
 }

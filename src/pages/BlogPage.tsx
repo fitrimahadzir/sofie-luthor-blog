@@ -1,9 +1,9 @@
-import { useEffect } from 'react'
+import { useEffect, useRef } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import PostCard from '../components/PostCard'
 import SectionHeading from '../components/SectionHeading'
 import SidebarLayout from '../components/SidebarLayout'
-import { useCategories, usePosts } from '../hooks/usePosts'
+import { useCategories, usePosts, usePostsPerPage } from '../hooks/usePosts'
 import { siteConfig } from '../config/site'
 
 export default function BlogPage() {
@@ -13,15 +13,29 @@ export default function BlogPage() {
   const page = Number(searchParams.get('page') ?? '1')
 
   const categories = useCategories()
+  const perPage = usePostsPerPage()
   const { posts, totalPages, loading, error } = usePosts(
     activeCategory,
     page,
     activeQuery,
+    perPage,
   )
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' })
   }, [activeCategory, page, activeQuery])
+
+  const prevPerPage = useRef(perPage)
+  useEffect(() => {
+    if (prevPerPage.current === perPage) return
+    prevPerPage.current = perPage
+    if (page !== 1) {
+      const params: Record<string, string> = { page: '1' }
+      if (activeCategory !== 'all') params.category = activeCategory
+      if (activeQuery) params.q = activeQuery
+      setSearchParams(params)
+    }
+  }, [perPage, page, activeCategory, activeQuery, setSearchParams])
 
   function buildParams(next: Record<string, string> = {}) {
     const params: Record<string, string> = { ...next }
