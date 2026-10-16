@@ -18,6 +18,6 @@ export const siteConfig = {
   // WordPress REST API integration
   // Set useWpApi to true and update wpApiUrl once your WordPress site is ready.
   // The WordPress site must have the REST API enabled (it is by default).
-  wpApiUrl: 'https://your-wordpress-site.com/wp-json',
-  useWpApi: false,
+  wpApiUrl: 'https://blog.sofieluthor.com/wp-json',
+  useWpApi: true,
 }
